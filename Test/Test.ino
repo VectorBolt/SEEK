@@ -92,7 +92,22 @@ void setup() {
 
 //________________________________________________________________________YOUR CODE GOES BELOW_____________________________________________________________________________________________________________
 
-
+//Skeleton functions
+void lineFollower(){
+  /*
+  double rightVoltage, leftVoltage;
+  while (True){
+    rightVoltage = 1.0;//CALLIBRATE VOLTAGES TO GOING FORWARD. ASSUMES 1.0 IS FORWARD
+    leftVoltage = 1.0;
+    if (rightSensor sees black){ //ADD HOW RIGHTSENSOR SEES BLACK. MAYBE PUT INPUT TO FUNCTION?
+      lefVoltage = 2.0; //NEEDS CALIBRATION
+    }
+    if (leftSensor sees black){ //SAME AS ABOVE
+      rightVoltage = 2.0; //NEEDS CALIBRATION
+    }
+  }
+  */
+}
 
 void loop() {
   GetBTCommand('#', ControllerInput);  // '\n' for Windows and '#' for android
