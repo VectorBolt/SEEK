@@ -54,9 +54,13 @@ int DIR_R_F = 4;  // Right Direction pin that will indicate forewards movement (
 int DIR_R_B = 2;  // Left Direction pin that will indicate backwards movement (1 for backwards, 0 for forewards).
 int PWM_R = 3;    // Speed controll pin. *** This pin must be plugged into an output pin on the arduino that is labled PWM ***.
 
-int enA = 9;
+int enA = 9; //right motor
 int in1 = 8;
 int in2 = 7;
+
+int enB = 3; //left motor
+int in3 = 2;
+int in4 = 4;
 
 
 // Here you can also declaire your own variables and functions:
@@ -97,10 +101,87 @@ void setup() {
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
 
+  pinMode(enB, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
 }
 
 //________________________________________________________________________YOUR CODE GOES BELOW_____________________________________________________________________________________________________________
 
+void controlMotors(int state){
+  //state = 1 is going forward slower
+  if (state == 1){
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+    analogWrite(enA, 100);
+    analogWrite(enB, 100);
+    delay(2000);
+  }
+  //state = 2 is going foward faster
+  else if (state == 2){
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+    analogWrite(enA, 200);
+    analogWrite(enB, 200);
+    delay(2000);
+  }
+  //state = 3 is turning right
+  else if (state == 3){
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+    analogWrite(enA, 0);
+    analogWrite(enB, 200);
+    delay(2000);    
+  }
+  //state = 4 is turning left
+  else if (state == 4){
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+    analogWrite(enA, 200);
+    analogWrite(enB, 0);
+    delay(2000);
+  }
+  //state = 5 is going backwards fast
+  else if (state == 5){
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+
+    analogWrite(enA, 200);
+    analogWrite(enB, 200);
+    delay(2000);
+  }
+  //state = 6 is going backwards slow
+  else if (state == 6){
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+
+    analogWrite(enA, 100);
+    analogWrite(enB, 100);
+    delay(2000);
+  }
+}
 
 //Skeleton functions
 void lineFollower(){
@@ -167,16 +248,6 @@ void loop() {
   GetBTCommand('#', ControllerInput);  // '\n' for Windows and '#' for android
   SimpleMapInput(MotorOutputs, ControllerInput);
   ExecuteCommand_L298N(MotorOutputs);
-
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-
-  analogWrite(enA, 200);
-  delay(2000);
-
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
-  delay(2000);
 
 }
 
