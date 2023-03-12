@@ -196,19 +196,13 @@ void controlMotors(int state){
 
 //Skeleton functions
 void lineFollower(){
-  /*
-  double rightVoltage, leftVoltage;
-  while (True){
-    rightVoltage = 1.0;//CALLIBRATE VOLTAGES TO GOING FORWARD. ASSUMES 1.0 IS FORWARD
-    leftVoltage = 1.0;
-    if (rightSensor sees black){ //ADD HOW RIGHTSENSOR SEES BLACK. MAYBE PUT INPUT TO FUNCTION?
-      lefVoltage = 2.0; //NEEDS CALIBRATION
-    }
-    if (leftSensor sees black){ //SAME AS ABOVE
-      rightVoltage = 2.0; //NEEDS CALIBRATION
-    }
+  controlMotors(2);
+  if (rightSensor sees black){ //ADD HOW RIGHTSENSOR SEES BLACK. MAYBE PUT INPUT TO FUNCTION?
+    controlMotors(4); //NEEDS CALIBRATION
   }
-  */
+  if (leftSensor sees black){ //SAME AS ABOVE
+    controlMotors(3); //NEEDS CALIBRATION
+  }
 }
 
 void dirtPickUp(){
@@ -256,10 +250,14 @@ void manualControl(){
 }
 
 void loop() {
-  GetBTCommand('\n', ControllerInput);  // '\n' for Windows and '#' for android
-  SimpleMapInput(MotorOutputs, ControllerInput);
-  ExecuteCommand_L298N(MotorOutputs);
-
+  if (vehicle_state == 0){ //controlled via bluetooth
+    GetBTCommand('\n', ControllerInput);  // '\n' for Windows and '#' for android
+    SimpleMapInput(MotorOutputs, ControllerInput);
+    ExecuteCommand_L298N(MotorOutputs);
+  }
+  else if (vehicle_state == 1){ //autonomous
+    lineFollower();    
+  }
 }
 
 
