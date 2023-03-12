@@ -62,6 +62,11 @@ int enB = 3; //left motor
 int in3 = 2;
 int in4 = 4;
 
+int IR_PIN_LEFT;
+int IR_PIN_RIGHT;
+int BLACK = 1;
+int WHTE = 0;
+
 
 // Here you can also declaire your own variables and functions:
 
@@ -97,13 +102,19 @@ void setup() {
   pinMode(DIR_R_B, OUTPUT);
   pinMode(PWM_R, OUTPUT);
 
+  //right motor setup
   pinMode(enA, OUTPUT);
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
 
+  //left motor setup
   pinMode(enB, OUTPUT);
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
+
+  // IR SETUP
+  pinMode(IR_PIN_LEFT, INPUT);
+  pinMode(IR_PIN_RIGHT, INPUT);
 }
 
 //________________________________________________________________________YOUR CODE GOES BELOW_____________________________________________________________________________________________________________
@@ -245,7 +256,7 @@ void manualControl(){
 }
 
 void loop() {
-  GetBTCommand('#', ControllerInput);  // '\n' for Windows and '#' for android
+  GetBTCommand('\n', ControllerInput);  // '\n' for Windows and '#' for android
   SimpleMapInput(MotorOutputs, ControllerInput);
   ExecuteCommand_L298N(MotorOutputs);
 
