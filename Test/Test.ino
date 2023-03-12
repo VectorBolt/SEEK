@@ -69,7 +69,11 @@ int WHTE = 0;
 
 
 // Here you can also declaire your own variables and functions:
-
+// _________________________________ IR SENSOR STUFF __________________________________________
+int IR_PIN_LEFT;
+int IR_PIN_RIGHT;
+int BLACK = 1;
+int WHTE = 0;
 
 
 //__________________________________________________________________________Your Input Goes Above__________________________________________________________________________________________________________________
@@ -196,12 +200,14 @@ void controlMotors(int state){
 
 //Skeleton functions
 void lineFollower(){
+  int irLeft = digitalRead(IR_PIN_LEFT);
+  int irRight = digitalRead(IR_PIN_RIGHT);
   controlMotors(2);
-  if (rightSensor sees black){ //ADD HOW RIGHTSENSOR SEES BLACK. MAYBE PUT INPUT TO FUNCTION?
-    controlMotors(4); //NEEDS CALIBRATION
-  }
-  if (leftSensor sees black){ //SAME AS ABOVE
+  if (irRight == BLACK){ //ADD HOW RIGHTSENSOR SEES BLACK. MAYBE PUT INPUT TO FUNCTION?
     controlMotors(3); //NEEDS CALIBRATION
+  }
+  if (irLeft == BLACK){ //SAME AS ABOVE
+    controlMotors(4); //NEEDS CALIBRATION
   }
 }
 
