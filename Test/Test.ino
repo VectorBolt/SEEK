@@ -54,6 +54,10 @@ int DIR_R_F = 4;  // Right Direction pin that will indicate forewards movement (
 int DIR_R_B = 2;  // Left Direction pin that will indicate backwards movement (1 for backwards, 0 for forewards).
 int PWM_R = 3;    // Speed controll pin. *** This pin must be plugged into an output pin on the arduino that is labled PWM ***.
 
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+
 
 // Here you can also declaire your own variables and functions:
 
@@ -88,9 +92,15 @@ void setup() {
   pinMode(DIR_R_F, OUTPUT);
   pinMode(DIR_R_B, OUTPUT);
   pinMode(PWM_R, OUTPUT);
+
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+
 }
 
 //________________________________________________________________________YOUR CODE GOES BELOW_____________________________________________________________________________________________________________
+
 
 //Skeleton functions
 void lineFollower(){
@@ -157,6 +167,17 @@ void loop() {
   GetBTCommand('#', ControllerInput);  // '\n' for Windows and '#' for android
   SimpleMapInput(MotorOutputs, ControllerInput);
   ExecuteCommand_L298N(MotorOutputs);
+
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+
+  analogWrite(enA, 200);
+  delay(2000);
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  delay(2000);
+
 }
 
 
