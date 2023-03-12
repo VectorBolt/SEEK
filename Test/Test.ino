@@ -109,6 +109,50 @@ void lineFollower(){
   */
 }
 
+void dirtPickUp(){
+  /*
+  int state;
+  double servoVoltage;
+  //state = 0 is nothing
+  servoVoltage = 0;
+  //state = 1 is up
+  //state = 2 is down
+  if (state == 1){
+    servoVoltage = 1; //CALIBRATE AND ASSUME THIS IS GOING UP
+  }  
+  else if (state == 2){
+    servoVoltage = -1; //CALIBRATE AND ASSUME THIS IS GOING DOWN
+  }
+  */
+}
+
+void manualControl(){
+  /*
+  int state;
+  //state = 0 is stopped
+  //state = 1 is going forward
+  //state = 2 is rotating right on spot
+  //state = 3 is rotating left on spot
+  //state = 4 is backwards
+  double rightVoltage = 0.0;
+  double leftVoltage = 0.0;
+  if (state == 1){
+    rightVoltage = 1.0;
+    leftVoltage = 1.0;    
+  }
+  if (state == 2){
+    leftVoltage = 1.0;
+  }
+  if (state == 3){
+    rightVoltage = 1.0;
+  }
+  if (state == 4){
+    rightVoltage = -1.0;
+    leftVoltage = -1.0;
+  }
+  */
+}
+
 void loop() {
   GetBTCommand('#', ControllerInput);  // '\n' for Windows and '#' for android
   SimpleMapInput(MotorOutputs, ControllerInput);
