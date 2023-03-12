@@ -113,7 +113,7 @@ void dirtPickUp(){
   /*
   int state;
   double servoVoltage;
-  //state = 0 is nothing
+  //state = 0 is not moving
   servoVoltage = 0;
   //state = 1 is up
   //state = 2 is down
